@@ -1,4 +1,6 @@
 # Hibernate
+Source: https://www.youtube.com/watch?v=Yv2xctJxE-w&list=PL4AFF701184976B25
+
 1) Added sql commands learned from course
 2) Added domain classes along with oracle db connection and hibernate code for persistence and retriving with embedding and collections
 3) Added id to the collection formed when embeddable object is list inside another class
