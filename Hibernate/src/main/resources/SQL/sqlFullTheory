@@ -1,0 +1,27 @@
+This full course of SQL:
+
+SQl has 4 language's :
+1) Data Query Language (DQL) :
+    a) To query the database for info
+2) Data Definition Language (DDL) :
+    a) To define database schema's
+3) Data Control Language (DCL) :
+    a) TO control the access to db data
+    b) model.Customer(authentication) and permission management(Authorization)
+4) Data manipulation Language (DML) :
+    a) For Inserting, Updating, Deleting from db
+
+Possibility's of keys in Table :
+1) One column for primary key
+2) One column for primary key Other column for foreign key
+3) Two foreign key columns together act's as primary key
+4) One column for primary key and that column can act as a foreign key in same table
+5) Two columns together act's as primary key
+
+DataTypes :
+INT             - Whole Numbers
+DECIMAL(M,N)    - Decimal Numbers Exact Value
+VARCHAR(1)      - String of length 1
+BLOB            - Binary large object, store's large data
+DATE            - 'YYYY-MM-DD'
+TIMESTAMP       - 'YYYY-MM-DD HH:MM:SS'
