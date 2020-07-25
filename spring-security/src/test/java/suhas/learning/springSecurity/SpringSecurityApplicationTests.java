@@ -1,4 +1,4 @@
-package suhas.learning.springsecurity;
+package suhas.learning.springSecurity;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

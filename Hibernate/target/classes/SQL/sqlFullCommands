@@ -1,0 +1,126 @@
+To check the database we're currently working :
+
+SELECT NAME
+FROM v$database;
+-----------------
+To check the list of table's in database we're currently working :
+
+SELECT table_name
+FROM user_tables;
+-----------------------
+To create a new Table :
+
+CREATE TABLE student
+(
+    student_id INT generated as identity PRIMARY KEY,
+    name       VARCHAR(20) NOT NULL,
+    major      VARCHAR(20) DEFAULT 'N/A',
+    project    VARCHAR(20) UNIQUE
+);
+----------------------------------------
+To drop a table :
+
+DROP TABLE student;
+---------------------------------------
+Adding column to a table :
+
+ALTER TABLE student
+    ADD gpa DECIMAL(3, 2);
+---------------------------------------
+Dropping column in a table :
+
+ALTER TABLE student
+    DROP COLUMN gpa;
+---------------------------------------
+Inserting a data in table :
+
+INSERT INTO student
+VALUES (2, 'suhas', 'CS', '3.5');
+
+or
+
+INSERT INTO student(student_id, name)
+VALUES (3, 'divya');
+---------------------------------------
+querying data from table :
+
+SELECT *
+FROM student
+    where name in ('suhas', 'Divya')
+ORDER BY project;
+-----------------------------------------
+To delete rows from table :
+
+delete
+from student
+where name = 'a';
+-----------------------------------------
+To update rows in table :
+
+UPDATE student
+SET major = 'CS'
+WHERE major = 'cs'
+   OR major = 'Cs';
+
+--Find employee's who all are born in may
+select *
+from employee
+where to_char(birth_date) like '%MAY%';
+
+--*************************************union********************************
+--find a list of employee and branch names
+SELECT first_name AS names
+FROM employee
+UNION
+SELECT branch_name
+FROM branch
+UNION
+SELECT client_name
+FROM client;
+
+--UNION ON multiple columns-----------------------------------
+SELECT client_name, client.branch_id
+FROM client
+UNION
+SELECT supplier_name, branch_supplier.branch_id
+FROM branch_supplier;
+
+--UNION to get income and expenses----------------------------
+SELECT salary as income_and_expenses
+FROM employee
+UNION
+SELECT total_sales
+FROM works_with;
+
+--*************************************joins********************************
+INSERT INTO branch
+VALUES (4, 'BUFFALO', NULL, NULL);
+
+SELECT employee.first_name, branch.branch_name
+FROM employee
+         JOIN branch on employee.emp_id = branch.mgr_id;
+
+SELECT employee.first_name, branch.branch_name
+FROM employee
+         LEFT JOIN branch on employee.emp_id = branch.mgr_id;
+
+SELECT employee.first_name, branch.branch_name
+FROM employee
+         RIGHT JOIN branch on employee.emp_id = branch.mgr_id;
+
+--*************************************Nested Queries********************************
+--Find names of all employees who sold >30k to a single client
+SELECT first_name
+FROM employee
+WHERE emp_id IN (
+    SELECT DISTINCT(emp_id)
+    FROM works_with
+    WHERE total_sales > 30000);
+
+--Find all clients who are handled by the branch that michael manages assume you know michel Id
+SELECT client_name
+FROM client
+WHERE branch_id IN (
+    SELECT branch_id
+    FROM branch
+    WHERE mgr_id = 102);

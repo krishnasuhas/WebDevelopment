@@ -6,6 +6,7 @@
     <modules>
         <module>Spring</module>
         <module>Hibernate</module>
+        <module>IbmMq</module>
     </modules>
 
     <parent>
